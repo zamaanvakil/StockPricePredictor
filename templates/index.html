@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<h1>Monte Carlo Simulator for Stock Prices</h1>
+
+<form method="POST" action="http://localhost:5000/display">
+	<label>Stock Ticker</label>
+	<input type="text" name="ticker" required>
+
+	<label>Simulation Period (days)</label>
+	<input type="number" name="sim_days" min="1" required>
+
+	<label>Number of Simulations</label>
+	<input type="number" name="sim_num" min="10" required>
+
+	<button type="submit">Submit</button>
+</form>
+</body>
+</html>
