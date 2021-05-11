@@ -4,6 +4,7 @@ from pandas_datareader import data as wb
 import matplotlib.pyplot as plt  
 from scipy.stats import norm
 import matplotlib.mlab as mlab
+from scipy.stats import norm
 import time
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
@@ -121,7 +122,8 @@ class monte_carlo:
         n, bins, patches = plt.hist(x, num_bins, rwidth=0.9, density=1, facecolor='green', alpha=0.6)
              
         # add a 'best fit' line
-        y = mlab.normpdf(bins, mu, sigma)
+        #y = mlab.normpdf(bins, mu, sigma)
+        y = norm.pdf(bins, mu, sigma)
         plt.plot(bins, y, 'r--')
         plt.xlabel('Price ('+self.currency+')')
         plt.ylabel('Probability')
@@ -143,9 +145,10 @@ class monte_carlo:
         html = urlopen(url)
         soup = BeautifulSoup(html, 'lxml')
         tag_data = soup.find_all('span')
-        tag_data = tag_data[12]
+        tag_data = tag_data[16]
         curr_str = tag_data.text
         curr_str = curr_str.split()
+        print(curr_str)
             
         stock_ex_nm = curr_str[0]   #stock exchange name
         curr_str = curr_str[-1]     #currency symbol
